@@ -1,0 +1,18 @@
+﻿  World.cpp
+c:\users\martin\documents\github\raytracer\raytracer\utilities\rgbcolor.h(84): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+c:\users\martin\documents\github\raytracer\raytracer\world\world.cpp(46): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+c:\users\martin\documents\github\raytracer\raytracer\world\world.cpp(54): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
+c:\users\martin\documents\github\raytracer\raytracer\world\world.cpp(55): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
+c:\users\martin\documents\github\raytracer\raytracer\world\world.cpp(73): warning C4305: 'argument': truncation from 'double' to 'const float'
+c:\users\martin\documents\github\raytracer\raytracer\world\world.cpp(80): warning C4305: 'argument': truncation from 'double' to 'const float'
+c:\users\martin\documents\github\raytracer\raytracer\world\world.cpp(94): warning C4305: 'argument': truncation from 'double' to 'const float'
+c:\users\martin\documents\github\raytracer\raytracer\world\world.cpp(95): warning C4305: 'argument': truncation from 'double' to 'const float'
+c:\users\martin\documents\github\raytracer\raytracer\world\world.cpp(96): warning C4305: 'argument': truncation from 'double' to 'const float'
+c:\users\martin\documents\github\raytracer\raytracer\world\world.cpp(97): warning C4305: 'argument': truncation from 'double' to 'const float'
+c:\users\martin\documents\github\raytracer\raytracer\world\world.cpp(109): warning C4305: 'argument': truncation from 'double' to 'const float'
+c:\users\martin\documents\github\raytracer\raytracer\world\world.cpp(110): warning C4305: 'argument': truncation from 'double' to 'const float'
+c:\users\martin\documents\github\raytracer\raytracer\world\world.cpp(111): warning C4305: 'argument': truncation from 'double' to 'const float'
+c:\users\martin\documents\github\raytracer\raytracer\world\world.cpp(123): warning C4305: 'argument': truncation from 'double' to 'const float'
+c:\users\martin\documents\github\raytracer\raytracer\world\world.cpp(124): warning C4305: 'argument': truncation from 'double' to 'const float'
+c:\users\martin\documents\github\raytracer\raytracer\world\world.cpp(149): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  RayTracer.vcxproj -> C:\Users\Martin\Documents\GitHub\RayTracer\Debug\RayTracer.exe
