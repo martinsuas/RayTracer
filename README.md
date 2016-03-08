@@ -1,4 +1,4 @@
-# Ray_Tracer
+# RayTracer
 Implements a simple ray tracing framework using openGL and c++. 
 
 Using the book "Ray Tracing from the Grounds Up" by Kevin Suffern as a reference to implement most features.
