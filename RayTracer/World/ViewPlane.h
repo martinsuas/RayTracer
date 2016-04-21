@@ -5,6 +5,7 @@ public:
 	int		hres;		// Horizontal image res
 	int		vres;		// Vertical image res
 	int		num_samples;// Number of samples per pixel
+	int		max_depth;
 	float	s;			// Pixel size
 	float	gamma;		// Monitor gamma factor
 	float	inv_gamma;	// 1/gamma
@@ -26,6 +27,8 @@ public:
 	void set_gamma(const float g);
 
 	void set_samples(const int num_samples);
+
+	void set_max_depth(const int d);
 };
 
 inline void
@@ -52,4 +55,9 @@ ViewPlane::set_gamma(const float g) {
 inline void
 ViewPlane::set_samples(const int s) {
 	num_samples = s;
+}
+
+inline void
+ViewPlane::set_max_depth(const int d) {
+	max_depth = d;
 }

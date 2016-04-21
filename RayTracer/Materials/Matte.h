@@ -9,31 +9,23 @@ public:
 
 	Matte(const Matte& m);
 
-	virtual Material*
-		clone(void) const;
+	virtual Material* clone(void) const;
 
-	Matte&
-		operator= (const Matte& rhs);
+	Matte& operator= (const Matte& rhs);
 
 	~Matte(void);
 
-	void
-		set_ka(const float k);
+	void set_ka(const float k);
 
-	void
-		set_kd(const float k);
+	void set_kd(const float k);
 
-	void
-		set_cd(const RGBColor c);
+	void set_cd(const RGBColor c);
 
-	void
-		set_cd(const float r, const float g, const float b);
+	void set_cd(const float r, const float g, const float b);
 
-	void
-		set_cd(const float c);
+	void set_cd(const float c);
 
-	virtual RGBColor
-		shade(ShadeRec& sr);
+	virtual RGBColor shade(ShadeRec& sr);
 
 private:
 

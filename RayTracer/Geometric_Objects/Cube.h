@@ -1,55 +1,42 @@
 #pragma once
+// 	Copyright (C) Kevin Suffern 2000-2007.
+//	This C++ code is for non-commercial purposes only.
+//	This C++ code is licensed under the GNU General Public License Version 2.
+//	See the file COPYING.txt for the full license.
+
+
 #include "GeometricObject.h"
+#include "../Utilities/BBox.h"
+
 class Cube : public GeometricObject {
 public:
-	// Constructors
-	Cube(void);		// Default constructor
-
-	Cube(const Point3D center, const Point3D dim); // Constructor
-
-	Cube(const Cube &cub);
-
+	Cube(void);
+	Cube(const Point3D& _p0, const Vector3D& _a, const Vector3D& _b);
+	Cube(const Point3D& _p0, const Vector3D& _a, const Vector3D& _b, const Normal& n);
 	virtual Cube* clone(void) const;
-
+	Cube(const Cube& r);
 	virtual ~Cube(void);
+	Cube& operator= (const Cube& rhs);
 
-	// Operators
-	Cube& operator= (const Cube &cub);
+	BBox get_bounding_box(void) const;
 
-	// Operations
-	void set_center(const Point3D &c);
+	virtual bool hit(const Ray& ray, double& t, ShadeRec& s) const;
+	virtual bool shadow_hit(const Ray& ray, double& tmin) const;
 
-	void set_center(const double x, const double y, const double z);
-
-	void set_dim(const Point3D &c);
-
-	void set_dim(const double x, const double y, const double z);
-
-	virtual bool hit(const Ray &ray, double &t, ShadeRec &sr) const;
-	virtual bool shadow_hit(const Ray &ray, double &t) const;
+	// the following functions are used when the Cube is a light source
+	virtual Normal get_normal(const Point3D& p);
+	virtual float pdf(ShadeRec& sr);
 
 private:
-	Point3D					center;	  // Location of the center of the rect.
-	Point3D					dim;	  // Specifies dimensions of Cube.
-	static const double		kEpsilon; // --FUTURE--
+	Point3D 		p0;   			// corner vertex
+	Vector3D		a;				// side
+	Vector3D		b;				// side
+	double			a_len_squared;	// square of the length of side a
+	double			b_len_squared;	// square of the length of side b
+
+	float			area;			// for rectangular lights
+	float			inv_area;		// for rectangular lights
+	Normal			normal;
+
+	static const double kEpsilon;
 };
-
-// Inline functions
-inline void Cube::set_center(const Point3D& c) {
-	center = c;
-}
-
-inline void Cube::set_center(const double x, const double y, const double z) {
-	center.x = x;
-	center.y = y;
-	center.z = z;
-}
-inline void Cube::set_dim(const Point3D& d) {
-	dim = d;
-}
-
-inline void Cube::set_dim(const double x, const double y, const double z) {
-	dim.x = x;
-	dim.y = y;
-	dim.z = z;
-}

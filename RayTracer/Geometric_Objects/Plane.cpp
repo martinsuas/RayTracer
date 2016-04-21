@@ -2,6 +2,7 @@
 #include <math.h>
 #include "../Utilities/ShadeRec.h"
 #include "../Utilities/Ray.h"
+#include <iostream>
 
 const double Plane::kEpsilon = 0.001;
 
@@ -64,18 +65,20 @@ bool Plane::hit(const Ray &ray, double &tmin, ShadeRec &sr) const {
 	double t = (a - ray.o) * n / (ray.d *n) ;
 
 	if (t > kEpsilon) {
-		tmin				= t;
-		sr.normal			= n;
+		tmin = t;
+		sr.normal = n;
 		sr.local_hit_point = ray.o + t * ray.d;
-		if (dim.x == 0 && dim.y == 0 & dim.z == 0) {
+		if (dim.x == 0 && dim.y == 0 && dim.z == 0) {
 			return true;
 		}
-		else if (abs(sr.local_hit_point.x - a.x) > dim.x ||
-			abs(sr.local_hit_point.y - a.y) > dim.y) 
-			return false;
+		else if (abs(sr.local_hit_point.x - a.x) > dim.x &&
+			abs(sr.local_hit_point.y - a.y) > dim.y) {
+			return true;
+		}
 	}
-	else
+	else {
 		return false;
+	}
 }
 
 bool Plane::shadow_hit(const Ray &ray, double &tmin) const {

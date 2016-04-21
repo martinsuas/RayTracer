@@ -38,3 +38,8 @@ GeometricObject::~GeometricObject(void) {
 void GeometricObject::set_material(Material* mPtr) {
 	material_ptr = mPtr;
 }
+
+void GeometricObject::set_color(float r, float g, float b) {
+	color.r = r; color.g = g; color.b = b;
+}
+

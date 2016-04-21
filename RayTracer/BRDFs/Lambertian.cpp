@@ -7,8 +7,8 @@ Lambertian::Lambertian(void)
 	cd(0.0)
 {}
 
-Lambertian::Lambertian(const Lambertian& lamb)
-	: BRDF(lamb),
+Lambertian::Lambertian(const Lambertian& lamb): 
+	BRDF(lamb),
 	kd(lamb.kd),
 	cd(lamb.cd)
 {}

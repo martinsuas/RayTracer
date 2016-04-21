@@ -7,6 +7,7 @@
 #include "../Geometric_Objects/GeometricObject.h"
 #include "../Geometric_Objects/Sphere.h"
 #include "../Geometric_Objects/Plane.h"
+
 #include "../Utilities/Ray.h"
 
 #include "../Lights/Light.h"
@@ -29,7 +30,8 @@ public:
 public:
 	World(void);	// Default constructor
 
-	void build(void);
+	void build_tracer(void);
+	void build_project(void);
 
 	void add_object(GeometricObject* object_ptr);
 
