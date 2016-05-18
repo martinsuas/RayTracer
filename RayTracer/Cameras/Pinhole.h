@@ -1,3 +1,7 @@
+/**
+Disclaimer: Most code in this project is based on Kevin Suffern's book "Ray Tracing from the Ground Up". Any similarities in the code
+reflect what was taught in the book and belong to the original author.
+**/
 #pragma once
 
 #include "../Utilities/Point2D.h"
@@ -16,6 +20,6 @@ public:
 	virtual void render_scene(const World &w);
 
 private:
-	float d;	// view/plane distance
-	float zoom; // zoom factor
+	float d;	// view distance
+	float zoom; // zoom
 };

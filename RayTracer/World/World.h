@@ -6,9 +6,10 @@
 #include "../Tracers/Tracer.h"
 #include "../Geometric_Objects/GeometricObject.h"
 #include "../Geometric_Objects/Sphere.h"
-#include "../Geometric_Objects/Plane.h"
+#include "../Geometric_Objects/Rect.h"
 
 #include "../Utilities/Ray.h"
+#include "../Utilities/KD_Node.h"
 
 #include "../Lights/Light.h"
 #include "../Cameras/Camera.h"
@@ -26,6 +27,8 @@ public:
 	Sphere						sphere;
 	vector<Light*>				lights;
 	vector<GeometricObject*>	objects;
+	KD_Node*					kdtree;
+	
 
 public:
 	World(void);	// Default constructor
@@ -40,6 +43,8 @@ public:
 	void set_camera(Camera* c_ptr);
 	void set_ambient_light(Light* light_ptr);
 
+	bool bufferFile(std::string objfile);
+
 	ShadeRec hit_objects(const Ray &ray);
 
 	//void render_scene(void) const;
@@ -48,6 +53,9 @@ public:
 
 	//void display_pixel(const int row, const int column,
 	//	const RGBColor &pixel_color) const;
+
+private:
+	bool World::hit(KD_Node* node, const Ray &ray, double &t, double &tmin, ShadeRec &sr) const;
 };
 
 // Inline functions

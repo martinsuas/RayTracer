@@ -1,4 +1,7 @@
-
+/**
+Disclaimer: Most code in this project is based on Kevin Suffern's book "Ray Tracing from the Ground Up". Any similarities in the code
+reflect what was taught in the book and belong to the original author.
+**/
 #include "../Utilities/Constants.h"
 #include "BRDF.h"
 
@@ -6,8 +9,7 @@ BRDF::BRDF(void) {}
 
 BRDF::BRDF(const BRDF& brdf) {}
 
-BRDF&
-BRDF::operator= (const BRDF& rhs) {
+BRDF& BRDF::operator= (const BRDF& rhs) {
 	if (this == &rhs)
 		return (*this);
 
@@ -16,22 +18,18 @@ BRDF::operator= (const BRDF& rhs) {
 
 BRDF::~BRDF(void) {}
 
-RGBColor
-BRDF::f(const ShadeRec& sr, const Vector3D& wo, const Vector3D& wi) const {
+RGBColor BRDF::f(const ShadeRec& sr, const Vector3D& wo, const Vector3D& wi) const {
 	return (black);
 }
 
-RGBColor
-BRDF::sample_f(const ShadeRec& sr, const Vector3D& wo, Vector3D& wi) const {
+RGBColor BRDF::sample_f(const ShadeRec& sr, const Vector3D& wo, Vector3D& wi) const {
 	return (black);
 }
 
-RGBColor
-BRDF::sample_f(const ShadeRec& sr, const Vector3D& wo, Vector3D& wi, float& pdf) const {
+RGBColor BRDF::sample_f(const ShadeRec& sr, const Vector3D& wo, Vector3D& wi, float& pdf) const {
 	return (black);
 }
 
-RGBColor
-BRDF::rho(const ShadeRec& sr, const Vector3D& wo) const {
+RGBColor BRDF::rho(const ShadeRec& sr, const Vector3D& wo) const {
 	return (black);
 }

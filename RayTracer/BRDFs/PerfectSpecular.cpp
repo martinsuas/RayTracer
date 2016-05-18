@@ -1,3 +1,7 @@
+/**
+Disclaimer: Most code in this project is based on Kevin Suffern's book "Ray Tracing from the Ground Up". Any similarities in the code
+reflect what was taught in the book and belong to the original author.
+**/
 #include "PerfectSpecular.h"
 
 PerfectSpecular::PerfectSpecular(void)
@@ -8,19 +12,16 @@ PerfectSpecular::PerfectSpecular(void)
 
 PerfectSpecular::~PerfectSpecular(void) {}
 
-PerfectSpecular*
-PerfectSpecular::clone(void) const {
+PerfectSpecular* PerfectSpecular::clone(void) const {
 	return (new PerfectSpecular(*this));
 }
 
 
-RGBColor
-PerfectSpecular::f(const ShadeRec& sr, const Vector3D& wo, const Vector3D& wi) const {
+RGBColor PerfectSpecular::f(const ShadeRec& sr, const Vector3D& wo, const Vector3D& wi) const {
 	return (black);
 }
 
-RGBColor
-PerfectSpecular::sample_f(const ShadeRec& sr, const Vector3D& wo, Vector3D& wi) const {
+RGBColor PerfectSpecular::sample_f(const ShadeRec& sr, const Vector3D& wo, Vector3D& wi) const {
 
 	float ndotwo = sr.normal * wo;
 	wi = -wo + 2.0 * sr.normal * ndotwo;
@@ -28,8 +29,7 @@ PerfectSpecular::sample_f(const ShadeRec& sr, const Vector3D& wo, Vector3D& wi) 
 }
 
 
-RGBColor
-PerfectSpecular::sample_f(const ShadeRec& sr, const Vector3D& wo, Vector3D& wi, float& pdf) const {
+RGBColor PerfectSpecular::sample_f(const ShadeRec& sr, const Vector3D& wo, Vector3D& wi, float& pdf) const {
 
 	float ndotwo = sr.normal * wo;
 	wi = -wo + 2.0 * sr.normal * ndotwo;
@@ -37,7 +37,6 @@ PerfectSpecular::sample_f(const ShadeRec& sr, const Vector3D& wo, Vector3D& wi, 
 	return (kr * cr);
 }
 
-RGBColor
-PerfectSpecular::rho(const ShadeRec& sr, const Vector3D& wo) const {
+RGBColor PerfectSpecular::rho(const ShadeRec& sr, const Vector3D& wo) const {
 	return (black);
 }

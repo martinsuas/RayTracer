@@ -1,3 +1,7 @@
+/**
+Disclaimer: Most code in this project is based on Kevin Suffern's book "Ray Tracing from the Ground Up". Any similarities in the code
+reflect what was taught in the book and belong to the original author.
+**/
 #include "Matte.h"
 
 Matte::Matte(void)
@@ -18,13 +22,11 @@ Matte::Matte(const Matte& m)
 	else  diffuse_brdf = NULL;
 }
 
-Material*
-Matte::clone(void) const {
+Material* Matte::clone(void) const {
 	return (new Matte(*this));
 }
 
-Matte&
-Matte::operator= (const Matte& rhs) {
+Matte& Matte::operator= (const Matte& rhs) {
 	if (this == &rhs)
 		return (*this);
 
@@ -62,8 +64,7 @@ Matte::~Matte(void) {
 	}
 }
 
-RGBColor
-Matte::shade(ShadeRec& sr) {
+RGBColor Matte::shade(ShadeRec& sr) {
 	Vector3D 	wo = -sr.ray.d;
 	RGBColor 	L = ambient_brdf->rho(sr, wo) * sr.w.ambient_ptr->L(sr);
 	int 		num_lights = sr.w.lights.size();

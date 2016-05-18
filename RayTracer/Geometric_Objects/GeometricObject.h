@@ -1,3 +1,7 @@
+/**
+Disclaimer: Most code in this project is based on Kevin Suffern's book "Ray Tracing from the Ground Up". Any similarities in the code
+reflect what was taught in the book and belong to the original author.
+**/
 #pragma once
 
 class Material;
@@ -5,6 +9,7 @@ class Material;
 #include "../Utilities/Point3D.h"
 #include "../Utilities/Ray.h"
 #include "../Utilities/ShadeRec.h"
+#include "../Utilities/BBox.h"
 
 //Represents an object in the 3D world.
 class GeometricObject {
@@ -25,8 +30,10 @@ public:
 	virtual void set_color(float r, float g, float b);
 
 	// Functions
+	virtual BBox get_bounding_box(void) const = 0;
 	virtual bool hit(const Ray &ray, double &tmin, ShadeRec &sr) const = 0; // pure virtual
 	virtual bool shadow_hit(const Ray &ray, double &tmin) const = 0;
+	virtual Point3D get_point() const = 0;
 protected:
 	mutable Material* material_ptr;
 	RGBColor color;

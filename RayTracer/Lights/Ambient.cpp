@@ -1,3 +1,7 @@
+/**
+Disclaimer: Most code in this project is based on Kevin Suffern's book "Ray Tracing from the Ground Up". Any similarities in the code
+reflect what was taught in the book and belong to the original author.
+**/
 #include "Ambient.h"
 
 Ambient::Ambient(void)
@@ -12,13 +16,11 @@ Ambient::Ambient(const Ambient& a)
 	color(a.color)
 {}
 
-Light*
-Ambient::clone(void) const {
+Light* Ambient::clone(void) const {
 	return (new Ambient(*this));
 }
 
-Ambient&
-Ambient::operator= (const Ambient& rhs) {
+Ambient& Ambient::operator= (const Ambient& rhs) {
 	if (this == &rhs)
 		return (*this);
 
@@ -32,13 +34,10 @@ Ambient::operator= (const Ambient& rhs) {
 
 Ambient::~Ambient(void) {}
 
-Vector3D
-Ambient::get_direction(ShadeRec& s) {
+Vector3D Ambient::get_direction(ShadeRec& s) {
 	return (Vector3D(0.0));
 }
 
-
-RGBColor
-Ambient::L(ShadeRec& sr) {
+RGBColor Ambient::L(ShadeRec& sr) {
 	return (ls * color);
 }

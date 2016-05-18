@@ -1,3 +1,7 @@
+/**
+Disclaimer: Most code in this project is based on Kevin Suffern's book "Ray Tracing from the Ground Up". Any similarities in the code
+reflect what was taught in the book and belong to the original author.
+**/
 #include "Phong.h"
 
 Phong::Phong(void)
@@ -23,13 +27,11 @@ Phong::Phong(const Phong& m)
 	else  specular_brdf = NULL;
 }
 
-Material*
-Phong::clone(void) const {
+Material* Phong::clone(void) const {
 	return (new Phong(*this));
 }
 
-Phong&
-Phong::operator= (const Phong& rhs) {
+Phong& Phong::operator= (const Phong& rhs) {
 	if (this == &rhs)
 		return (*this);
 
@@ -80,8 +82,7 @@ Phong::~Phong(void) {
 	}
 }
 
-RGBColor
-Phong::shade(ShadeRec& sr) {
+RGBColor Phong::shade(ShadeRec& sr) {
 	Vector3D 	wo = -sr.ray.d;
 	RGBColor 	L = ambient_brdf->rho(sr, wo) * sr.w.ambient_ptr->L(sr);
 	int 		num_lights = sr.w.lights.size();

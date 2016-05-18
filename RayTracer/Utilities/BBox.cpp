@@ -1,122 +1,112 @@
+/**
+Disclaimer: Most code in this project is based on Kevin Suffern's book "Ray Tracing from the Ground Up". Any similarities in the code
+reflect what was taught in the book and belong to the original author.
+**/
 #include "BBox.h"
 #include "Constants.h"
+#include <algorithm>
+#include <iostream>
+BBox::BBox() //:
+	//p1(Point3D()),
+	//p2(Point3D())
+{}
 
-BBox::BBox(void) :
-	x0(-1),
-	x1(1),
-	y0(-1),
-	y1(1),
-	z0(-1),
-	z1(1) {
-}
+BBox::BBox(const BBox &box) :
+	p1(box.p1),
+	p2(box.p2)
+{}
 
-BBox::BBox(const double x0, const double x1,
-	const double y0, const double y1,
-	const double z0, const double z1) :
-	x0(x0),
-	x1(x1),
-	y0(y0),
-	y1(y1),
-	z0(z0),
-	z1(z1) {
-}
+BBox::BBox(const Point3D &p1, const Point3D &p2) :
+	p1(p1),
+	p2(p2)
+{}
 
-BBox::BBox(const Point3D& p0, const Point3D& p1) :
-	x0(p0.x),
-	x1(p1.x),
-	y0(p0.y),
-	y1(p1.y),
-	z0(p0.z),
-	z1(p1.z) {
-}
+BBox::BBox(const double x1, const double y1, const double z1,
+	const double x2, const double y2, const double z2) :
+	p1(Point3D(x1, y1, z1)),
+	p2(Point3D(x2, y2, z2))
+{}
 
-BBox::BBox(const BBox& bbox) :
-	x0(bbox.x0),
-	x1(bbox.x1),
-	y0(bbox.y0),
-	y1(bbox.y1),
-	z0(bbox.z0),
-	z1(bbox.z1) {
-}
-
-BBox& BBox::operator=(const BBox& bbox) {
-	x0 = bbox.x0;
-	x1 = bbox.x1;
-	y0 = bbox.y0;
-	y1 = bbox.y1;
-	z0 = bbox.z0;
-	z1 = bbox.z1;
-
-	return *this;
-}
-
-BBox::~BBox(void) {
-}
+BBox::~BBox(void) {}
 
 bool BBox::hit(const Ray& ray) const {
-	double ox = ray.o.x; double oy = ray.o.y; double oz = ray.o.z;
-	double dx = ray.d.x; double dy = ray.d.y; double dz = ray.d.z;
+	double minx, miny, minz, maxx, maxy, maxz;
 
-	double tx_min, ty_min, tz_min;
-	double tx_max, ty_max, tz_max;
-
-	double a = 1.0 / dx;
+	double a = 1.0 / ray.d.x;
 	if (a >= 0) {
-		tx_min = (x0 - ox) * a;
-		tx_max = (x1 - ox) * a;
+		minx = (p1.x - ray.o.x) * a;
+		maxx = (p2.x - ray.o.x) * a;
 	}
 	else {
-		tx_min = (x1 - ox) * a;
-		tx_max = (x0 - ox) * a;
+		minx = (p2.x - ray.o.x) * a;
+		maxx = (p1.x - ray.o.x) * a;
 	}
 
-	double b = 1.0 / dy;
+	double b = 1.0 / ray.d.y;
 	if (b >= 0) {
-		ty_min = (y0 - oy) * b;
-		ty_max = (y1 - oy) * b;
+		miny = (p1.y - ray.o.y) * b;
+		maxy = (p2.y - ray.o.y) * b;
 	}
 	else {
-		ty_min = (y1 - oy) * b;
-		ty_max = (y0 - oy) * b;
+		miny = (p2.y - ray.o.y) * b;
+		maxy = (p1.y - ray.o.y) * b;
 	}
 
-	double c = 1.0 / dz;
+	double c = 1.0 / ray.d.z;
 	if (c >= 0) {
-		tz_min = (z0 - oz) * c;
-		tz_max = (z1 - oz) * c;
+		minz = (p1.z - ray.o.z) * c;
+		maxz = (p2.z - ray.o.z) * c;
 	}
 	else {
-		tz_min = (z1 - oz) * c;
-		tz_max = (z0 - oz) * c;
+		minz = (p2.z - ray.o.z) * c;
+		maxz = (p1.z - ray.o.z) * c;
 	}
 
-	double t0, t1;
-
-	// find largest entering t value
-
-	if (tx_min > ty_min)
-		t0 = tx_min;
+	double t1, t2;
+	if (minx > miny)
+		t1 = minx;
 	else
-		t0 = ty_min;
+		t1 = miny;
 
-	if (tz_min > t0)
-		t0 = tz_min;
+	if (minz > t1)
+		t1 = minz;
 
-	// find smallest exiting t value
-
-	if (tx_max < ty_max)
-		t1 = tx_max;
+	if (maxx < maxy)
+		t2 = maxx;
 	else
-		t1 = ty_max;
+		t2 = maxy;
 
-	if (tz_max < t1)
-		t1 = tz_max;
+	if (maxz < t2)
+		t2 = maxz;
 
-	return (t0 < t1 && t1 > kEpsilon);
+	return (t1 < t2 && t2 > kEpsilon);
 }
 
-bool BBox::inside(const Point3D& p) const {
-	return (x0 < p.x && p.x < x1)
-		&& (y0 < p.y && p.y < y1)
-		&& (z0 < p.z && p.z < z1);
+bool BBox::in(const Point3D &p) const {
+	return (p1.x < p.x && p.x < p2.x) && (p1.y  < p.y && p.y < p2.y)
+		&& (p1.z  < p.z && p.z < p2.z);
+}
+
+void BBox::expand(const BBox &bbox) {
+
+	p1.x = std::min(p1.x, bbox.p1.x);
+	p1.y = std::min(p1.y, bbox.p1.y);
+	p1.z = std::min(p1.z, bbox.p1.z);
+	p2.x = std::max(p2.x, bbox.p2.x);
+	p2.y = std::max(p2.y, bbox.p2.y);
+	p2.z = std::max(p2.z, bbox.p2.z);
+
+}
+
+int BBox::longest_axis() const {
+	Vector3D dis = p2 - p1;
+	double xdef = abs(dis.x);//p2.x - p1.x);
+	double ydef = abs(dis.y);//p2.y - p1.y);
+	double zdef = abs(dis.z);//p2.z - p1.z);
+	if (xdef >= ydef && xdef >= zdef)
+		return 1;
+	else if (ydef >= xdef && ydef >= zdef)
+		return 2;
+	else
+		return 3;
 }

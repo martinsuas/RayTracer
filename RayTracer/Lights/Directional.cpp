@@ -1,3 +1,7 @@
+/**
+Disclaimer: Most code in this project is based on Kevin Suffern's book "Ray Tracing from the Ground Up". Any similarities in the code
+reflect what was taught in the book and belong to the original author.
+**/
 #include "Directional.h"
 
 Directional::Directional(void)
@@ -14,13 +18,11 @@ Directional::Directional(const Directional& dl)
 	dir(dl.dir)
 {}
 
-Light*
-Directional::clone(void) const {
+Light* Directional::clone(void) const {
 	return (new Directional(*this));
 }
 
-Directional&
-Directional::operator= (const Directional& rhs)
+Directional& Directional::operator= (const Directional& rhs)
 {
 	if (this == &rhs)
 		return (*this);
@@ -36,12 +38,10 @@ Directional::operator= (const Directional& rhs)
 
 Directional::~Directional(void) {}
 
-Vector3D
-Directional::get_direction(ShadeRec& sr) {
+Vector3D Directional::get_direction(ShadeRec& sr) {
 	return (dir);
 }
 
-RGBColor
-Directional::L(ShadeRec& s) {
+RGBColor Directional::L(ShadeRec& s) {
 	return (ls * color);
 }

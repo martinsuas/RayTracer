@@ -1,3 +1,7 @@
+/**
+Disclaimer: Most code in this project is based on Kevin Suffern's book "Ray Tracing from the Ground Up". Any similarities in the code
+reflect what was taught in the book and belong to the original author.
+**/
 #include "RGBColor.h"
 #include <math.h>
 // Constructors
@@ -12,8 +16,7 @@ RGBColor::RGBColor(const RGBColor &c)
 
 RGBColor::~RGBColor(void) {}
 
-RGBColor&
-RGBColor::operator= (const RGBColor& rhs) {
+RGBColor& RGBColor::operator= (const RGBColor& rhs) {
 	if (this == &rhs)
 		return (*this);
 
@@ -22,8 +25,7 @@ RGBColor::operator= (const RGBColor& rhs) {
 	return (*this);
 }
 
-RGBColor
-RGBColor::powc(float p) const {
+RGBColor RGBColor::powc(float p) const {
 	return (RGBColor(pow(r, p), pow(g, p), pow(b, p)));
 }
 

@@ -1,14 +1,18 @@
+/**
+Disclaimer: Most code in this project is based on Kevin Suffern's book "Ray Tracing from the Ground Up". Any similarities in the code
+reflect what was taught in the book and belong to the original author.
+**/
 #pragma once
 
 class ViewPlane {
 public:
-	int		hres;		// Horizontal image res
-	int		vres;		// Vertical image res
-	int		num_samples;// Number of samples per pixel
+	int		hres;
+	int		vres;
+	int		num_samples;
 	int		max_depth;
 	float	s;			// Pixel size
-	float	gamma;		// Monitor gamma factor
-	float	inv_gamma;	// 1/gamma
+	float	gamma;
+	float	inv_gamma;
 
 	ViewPlane();
 

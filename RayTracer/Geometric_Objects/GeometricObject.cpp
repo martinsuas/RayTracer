@@ -1,10 +1,13 @@
+/**
+Disclaimer: Most code in this project is based on Kevin Suffern's book "Ray Tracing from the Ground Up". Any similarities in the code
+reflect what was taught in the book and belong to the original author.
+**/
 #include "../Utilities/Constants.h"
 #include "../Materials/Material.h"
 #include "GeometricObject.h"
 
 // Constructors
-GeometricObject::GeometricObject(void) : 
-	material_ptr(NULL) {}
+GeometricObject::GeometricObject(void) :  material_ptr(NULL) {}
 
 GeometricObject::GeometricObject(const GeometricObject& object) {
 	if (object.material_ptr)

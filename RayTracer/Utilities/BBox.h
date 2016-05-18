@@ -1,27 +1,27 @@
+/**
+Disclaimer: Most code in this project is based on Kevin Suffern's book "Ray Tracing from the Ground Up". Any similarities in the code
+reflect what was taught in the book and belong to the original author.
+**/
 #pragma once
-#include "Point3D.h"
+
 #include "Ray.h"
+#include "Point3D.h"
 
-class BBox
-{
+class BBox {
 public:
-	BBox(void);
-	BBox(const double x0, const double x1,
-		const double y0, const double y1,
-		const double z0, const double z1);
-	BBox(const Point3D& p0, const Point3D& p1);
-	BBox(const BBox& bbox);
-	BBox& operator=(const BBox& bbox);
-	virtual ~BBox(void);
+	BBox();
+	BBox(const BBox &box);
+	BBox(const Point3D &p1, const Point3D &p2);
+	BBox(const double x1, const double y1, const double z1,
+		const double x2, const double y2, const double z2);
+	~BBox();
 
-	bool hit(const Ray& ray) const;
-	bool inside(const Point3D& p) const;
+	bool hit(const Ray &r) const;
+	bool in(const Point3D &p) const;
 
-public:
-	double x0;
-	double x1;
-	double y0;
-	double y1;
-	double z0;
-	double z1;
-};
+	void expand(const BBox &bbox);
+	int longest_axis() const;
+
+	Point3D p1;
+	Point3D p2;
+}; 

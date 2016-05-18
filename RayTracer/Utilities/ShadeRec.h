@@ -1,3 +1,7 @@
+/**
+Disclaimer: Most code in this project is based on Kevin Suffern's book "Ray Tracing from the Ground Up". Any similarities in the code
+reflect what was taught in the book and belong to the original author.
+**/
 #pragma once
 #include <vector>
 
@@ -12,11 +16,11 @@ class World;
 class ShadeRec {
 public:
 	bool		hit_an_object;		// Checks if ray hitted an object
-	Material*	material_ptr;	// Nearest object's material
+	Material*	material_ptr;	    // Nearest object's material
 	Point3D		hit_point;			// World coordinates of hit point
 	Point3D		local_hit_point;	// (text?)World coordinates of hit point
-	Normal		normal;				// Normal of hit point
-	RGBColor	color;				// Chapter 3 only
+	Normal		normal;				// Normal of a hit point
+	RGBColor	color;				// Chapter 3 only - will be used ltaer
 	Ray			ray;				// For specular highlights
 	float		t;					// Ray parameter
 	int			depth;				// Recursion depth

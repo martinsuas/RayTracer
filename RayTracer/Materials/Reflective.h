@@ -1,3 +1,7 @@
+/**
+Disclaimer: Most code in this project is based on Kevin Suffern's book "Ray Tracing from the Ground Up". Any similarities in the code
+reflect what was taught in the book and belong to the original author.
+**/
 #pragma once
 #include "Phong.h"
 #include "../BRDFs/PerfectSpecular.h"
@@ -9,31 +13,23 @@ public:
 
 	Reflective(const Reflective& rm);
 
-	Reflective&
-		operator= (const Reflective& rhs);
+	Reflective& operator= (const Reflective& rhs);
 
-	virtual Reflective*
-		clone(void) const;
+	virtual Reflective* clone(void) const;
 
 	~Reflective(void);
 
-	void
-		set_kr(const float k);
+	void set_kr(const float k);
 
-	void
-		set_cr(const RGBColor& c);
+	void set_cr(const RGBColor& c);
 
-	void
-		set_cr(const float r, const float g, const float b);
+	void set_cr(const float r, const float g, const float b);
 
-	void
-		set_cr(const float c);
+	void set_cr(const float c);
 
-	virtual RGBColor
-		shade(ShadeRec& s);
+	virtual RGBColor shade(ShadeRec& s);
 
 private:
-
 	PerfectSpecular* reflective_brdf;
 };
 

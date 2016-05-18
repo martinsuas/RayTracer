@@ -7,8 +7,8 @@ Class used to represent a ray. Public by default due its frequent use.
 */
 class Ray {
 public:
-	Point3D o;		// origin
-	Vector3D d;		// direction
+	Point3D o; // origin
+	Vector3D d; // direction
 
 	// Constructors
 	Ray(void);

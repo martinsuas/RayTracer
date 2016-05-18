@@ -1,3 +1,7 @@
+/**
+Disclaimer: Most code in this project is based on Kevin Suffern's book "Ray Tracing from the Ground Up". Any similarities in the code
+reflect what was taught in the book and belong to the original author.
+**/
 #pragma once
 #include "Matrix.h"
 
@@ -15,7 +19,11 @@ public:
 	Vector3D(const Vector3D &point);
 	Vector3D(const Normal& n);						
 	Vector3D(const Point3D& p);
-	~Vector3D(void);
+	~Vector3D(void);/**
+Disclaimer: Most code in this project is based on Kevin Suffern's book "Ray Tracing from the Ground Up". Any similarities in the code
+reflect what was taught in the book and belong to the original author.
+**/
+
 
 	// Operators
 	Vector3D& operator= (const Vector3D& rhs);

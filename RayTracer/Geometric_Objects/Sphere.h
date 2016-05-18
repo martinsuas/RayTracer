@@ -1,3 +1,7 @@
+/**
+Disclaimer: Most code in this project is based on Kevin Suffern's book "Ray Tracing from the Ground Up". Any similarities in the code
+reflect what was taught in the book and belong to the original author.
+**/
 #pragma once
 
 #include "GeometricObject.h"
@@ -14,6 +18,10 @@ public:
 
 	virtual ~Sphere(void);
 
+	BBox get_bounding_box(void) const;
+	Point3D get_point() const;
+
+
 	// Operators
 	Sphere& operator= (const Sphere &sphere);
 
@@ -29,7 +37,7 @@ public:
 private:
 	Point3D					center;	  // Location of the center of the sphere.
 	double					radius;   // Radius of the sphere
-	static const double		kEpsilon; // --FUTURE--
+	static const double		kEpsilon; 
 };
 
 // Inline functions

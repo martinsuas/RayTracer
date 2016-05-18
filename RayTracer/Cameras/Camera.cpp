@@ -1,3 +1,7 @@
+/**
+Disclaimer: Most code in this project is based on Kevin Suffern's book "Ray Tracing from the Ground Up". Any similarities in the code
+reflect what was taught in the book and belong to the original author.
+**/
 #include "Camera.h"
 
 // Constructors
@@ -8,7 +12,9 @@ Camera::Camera() :
 	u(1,0,0),
 	v(0,1,0),
 	w(0,0,1),
-	exposure_time(1.0)
+	exposure_time(1.0),
+	max_lum(100),
+	max_d_lum(500)
 {};
 Camera::Camera(const Camera &c) :
 	eye(c.eye),
@@ -17,7 +23,9 @@ Camera::Camera(const Camera &c) :
 	u(c.u),
 	v(c.v),
 	w(c.w),
-	exposure_time(c.exposure_time)
+	exposure_time(c.exposure_time),
+	max_lum(c.max_lum),
+	max_d_lum(c.max_d_lum)
 {}
 Camera::~Camera() {}
 
@@ -31,6 +39,8 @@ Camera& Camera::operator=(const Camera &cam) {
 	u = cam.u;
 	v = cam.v;
 	exposure_time = cam.exposure_time;
+	max_lum = cam.max_lum;
+	max_d_lum = cam.max_d_lum;
 	return *this;
 }
 

@@ -1,3 +1,7 @@
+/**
+Disclaimer: Most code in this project is based on Kevin Suffern's book "Ray Tracing from the Ground Up". Any similarities in the code
+reflect what was taught in the book and belong to the original author.
+**/
 #include "SV_Matte.h"
 
 SV_Matte::SV_Matte() :
@@ -57,7 +61,7 @@ RGBColor SV_Matte::shade(ShadeRec& sr) {
 			}
 
 			if (!in_shadow)
-				L += diffuse_brdf->f(sr, wo, wi) * light_ptr->L(sr) * ndotwi; //*light_ptr->G(sr)
+				L += diffuse_brdf->f(sr, wo, wi) * light_ptr->L(sr) * ndotwi;
 		}
 	}
 	return L;

@@ -1,3 +1,7 @@
+/**
+Disclaimer: Most code in this project is based on Kevin Suffern's book "Ray Tracing from the Ground Up". Any similarities in the code
+reflect what was taught in the book and belong to the original author.
+**/
 #pragma once
 /*
 This header contains some constants for the Ray Tracer.
@@ -19,6 +23,10 @@ const double	kHugeValue = 1.0E10;
 const RGBColor black(0.0);
 const RGBColor red(1.0, 0.0, 0.0);
 const RGBColor yellow(1.0, 1.0, 0.0);
+const RGBColor purple(1.0, 0.0, 1.0);
+const RGBColor green(0.0, 1.0, 0.0);
+const RGBColor blue(0.0, 0.0, 1.0);
+
 const RGBColor white(1.0);
 
 const float 	invRAND_MAX = 1.0f / (float)RAND_MAX;

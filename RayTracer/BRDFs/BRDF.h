@@ -1,3 +1,7 @@
+/**
+Disclaimer: Most code in this project is based on Kevin Suffern's book "Ray Tracing from the Ground Up". Any similarities in the code
+reflect what was taught in the book and belong to the original author.
+**/
 #pragma once
 #include <math.h>
 
@@ -12,26 +16,18 @@ public:
 
 	BRDF(const BRDF& object);
 
-	virtual BRDF*
-		clone(void) const = 0;
-
 	~BRDF(void);
 
-	virtual RGBColor
-		f(const ShadeRec& sr, const Vector3D& wo, const Vector3D& wi) const;
+	virtual RGBColor f(const ShadeRec& sr, const Vector3D& wo, const Vector3D& wi) const;
 
-	virtual RGBColor
-		sample_f(const ShadeRec& sr, const Vector3D& wo, Vector3D& wi) const;
+	virtual RGBColor sample_f(const ShadeRec& sr, const Vector3D& wo, Vector3D& wi) const;
 
-	virtual RGBColor
-		sample_f(const ShadeRec& sr, const Vector3D& wo, Vector3D& wi, float& pdf) const;
+	virtual RGBColor sample_f(const ShadeRec& sr, const Vector3D& wo, Vector3D& wi, float& pdf) const;
 
-	virtual RGBColor
-		rho(const ShadeRec& sr, const Vector3D& wo) const;
+	virtual RGBColor rho(const ShadeRec& sr, const Vector3D& wo) const;
 
 
 protected:
 
-	BRDF&
-		operator= (const BRDF& rhs);
+	BRDF& operator= (const BRDF& rhs);
 };

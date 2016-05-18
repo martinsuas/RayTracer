@@ -1,3 +1,7 @@
+/**
+Disclaimer: Most code in this project is based on Kevin Suffern's book "Ray Tracing from the Ground Up". Any similarities in the code
+reflect what was taught in the book and belong to the original author.
+**/
 #include "Reflective.h"
 
 Reflective::Reflective(void)
@@ -15,8 +19,7 @@ Reflective::Reflective(const Reflective& rm)
 		reflective_brdf = NULL;
 }
 
-Reflective&
-Reflective::operator= (const Reflective& rhs) {
+Reflective& Reflective::operator= (const Reflective& rhs) {
 	if (this == &rhs)
 		return (*this);
 
@@ -33,8 +36,7 @@ Reflective::operator= (const Reflective& rhs) {
 	return (*this);
 }
 
-Reflective*
-Reflective::clone(void) const {
+Reflective* Reflective::clone(void) const {
 	return (new Reflective(*this));
 }
 
@@ -46,10 +48,7 @@ Reflective::~Reflective(void) {
 	}
 }
 
-
-
-RGBColor
-Reflective::shade(ShadeRec& sr) {
+RGBColor Reflective::shade(ShadeRec& sr) {
 	RGBColor L(Phong::shade(sr));
 
 	Vector3D wo = -sr.ray.d;

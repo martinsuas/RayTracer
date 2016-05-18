@@ -1,3 +1,7 @@
+/**
+Disclaimer: Most code in this project is based on Kevin Suffern's book "Ray Tracing from the Ground Up". Any similarities in the code
+reflect what was taught in the book and belong to the original author.
+**/
 #pragma once
 #include "Matrix.h"
 #include "Vector3D.h"
@@ -24,7 +28,7 @@ public:
 	Normal operator- (void) const;
 	Normal operator+ (const Normal& n) const;
 	Normal& operator+= (const Normal& n);
-	double operator* (const Vector3D& v) const;				// dot product with a vector on the right
+	double operator* (const Vector3D& v) const;
 	Normal operator* (const double a) const;
 
 	// Operations

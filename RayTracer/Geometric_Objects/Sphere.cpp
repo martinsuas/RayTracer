@@ -1,3 +1,7 @@
+/**
+Disclaimer: Most code in this project is based on Kevin Suffern's book "Ray Tracing from the Ground Up". Any similarities in the code
+reflect what was taught in the book and belong to the original author.
+**/
 #include "Sphere.h"
 #include <math.h>
 
@@ -88,4 +92,15 @@ bool Sphere::shadow_hit(const Ray &ray, double &tmin) const {
 		}
 	}
 	return false;
+}
+
+BBox Sphere::get_bounding_box(void) const {
+	BBox ans;
+	ans.p1 = Point3D(center.x - radius, center.y - radius, center.z - radius);
+	ans.p2 = Point3D(center.x + radius, center.y + radius, center.z + radius);
+	return ans;
+}
+
+Point3D Sphere::get_point() const {
+	return center;
 }

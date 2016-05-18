@@ -1,3 +1,7 @@
+/**
+Disclaimer: Most code in this project is based on Kevin Suffern's book "Ray Tracing from the Ground Up". Any similarities in the code
+reflect what was taught in the book and belong to the original author.
+**/
 #pragma once
 #include "../Utilities/Point3D.h"
 #include "../Utilities/Vector3D.h"
@@ -18,6 +22,8 @@ public:
 	void set_lookat(const float x, const float y, const float z);
 	void set_up(const Vector3D &v);
 	void set_up(const float x, const float y, const float z);
+	void set_max_lum(const float lum);
+	void set_max_d_lum(const float lum);
 
 	// Functions
 	void compute_ortho_basis();
@@ -27,10 +33,10 @@ public:
 protected:
 	Point3D eye, lookat;
 	Vector3D up;
-	// View defined using orthonormal basis (u,v,w)
 	Vector3D u, v, w;
-	// Chapter 28
+	// Ch 28
 	float exposure_time;
+	float max_lum, max_d_lum;
 
 	// Operators
 	Camera& operator=(const Camera &cam);
@@ -54,4 +60,12 @@ inline void Camera::set_up(const float x, const float y, const float z) {
 	up.x = x;
 	up.y = y;
 	up.z = z;
+}
+
+inline void Camera::set_max_lum(const float lum) {
+	max_lum = lum;
+}
+
+inline void Camera::set_max_d_lum(const float lum) {
+	max_d_lum = lum;
 }

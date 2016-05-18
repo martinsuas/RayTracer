@@ -1,3 +1,7 @@
+/**
+Disclaimer: Most code in this project is based on Kevin Suffern's book "Ray Tracing from the Ground Up". Any similarities in the code
+reflect what was taught in the book and belong to the original author.
+**/
 #include "PointLight.h"
 
 PointLight::PointLight(void)
@@ -14,13 +18,11 @@ PointLight::PointLight(const PointLight& dl)
 	point(dl.point)
 {}
 
-Light*
-PointLight::clone(void) const {
+Light* PointLight::clone(void) const {
 	return (new PointLight(*this));
 }
 
-PointLight&
-PointLight::operator= (const PointLight& rhs)
+PointLight& PointLight::operator= (const PointLight& rhs)
 {
 	if (this == &rhs)
 		return (*this);
@@ -36,23 +38,19 @@ PointLight::operator= (const PointLight& rhs)
 
 PointLight::~PointLight(void) {}
 
-Vector3D
-PointLight::get_direction(ShadeRec& sr) {
+Vector3D PointLight::get_direction(ShadeRec& sr) {
 	return (point - sr.hit_point).hat();
 }
 
-bool
-PointLight::casts_shadows() {
+bool PointLight::casts_shadows() {
 	return true;
 }
 
-RGBColor
-PointLight::L(ShadeRec& s) {
+RGBColor PointLight::L(ShadeRec& s) {
 	return (ls * color);
 }
 
-bool
-PointLight::in_shadow(const Ray &ray, const ShadeRec &sr) const {
+bool PointLight::in_shadow(const Ray &ray, const ShadeRec &sr) const {
 	double t;
 	int num_objects = sr.w.objects.size();
 	float d = point.distance(ray.o);

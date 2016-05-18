@@ -1,5 +1,9 @@
+/**
+Disclaimer: Most code in this project is based on Kevin Suffern's book "Ray Tracing from the Ground Up". Any similarities in the code
+reflect what was taught in the book and belong to the original author.
+**/
 #pragma once
-#include "../World/World.h"			// required for the shade function in all derived classes
+#include "../World/World.h"	
 #include "../Utilities/RGBColor.h"
 #include "../Utilities/ShadeRec.h"
 
